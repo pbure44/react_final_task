@@ -7,7 +7,7 @@ const router = createBrowserRouter([
     {
         path:'', element:<MainLayout/>,children:[
             {
-                index:true, element:<Navigate to={'login'}/>
+                index:true, element:<Navigate to={'movies'}/>
             },
             {
                 path:'movies',element:<MainPage/>

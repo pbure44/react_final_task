@@ -1,6 +1,6 @@
 const baseURL = 'https://api.themoviedb.org/3'
 
-const auth = '/auth'
+const auth = '/authentication/token/validate_with_login'
 const users = '/users'
 const movie = '/discover/movie'
 const genres = '/genre/movie/list'
