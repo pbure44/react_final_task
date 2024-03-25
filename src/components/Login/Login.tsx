@@ -9,6 +9,7 @@ const Login = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const {loginError} = useAppSelector(state => state.auth);
+
     const login: SubmitHandler<IAuth> = async (user) => {
         const {meta: {requestStatus}} = await dispatch(authActions.login({user}))
         if (requestStatus === 'fulfilled') {

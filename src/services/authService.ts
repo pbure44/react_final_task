@@ -24,19 +24,19 @@ const authService = {
     },
 
     me(account_id: number): IRes<IUser> {
-        return apiService.get(urls.auth.me(account_id))
+        return apiService.get(urls.auth.me(account_id));
     },
 
     setTokens({access}: ITokens): void {
-        localStorage.setItem(accessTokenKey, access)
+        localStorage.setItem(accessTokenKey, access);
 
     },
     getAccessToken(): string {
-        return localStorage.getItem(accessTokenKey)
+        return 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNTQ5ZjlmOGRlNmMzNTI0MTYyMjgxMjQ5NDQ1MzFhZCIsInN1YiI6IjY1ZTFmYzI3YTgwNjczMDE4NGFiNzU4NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.UBJxs7EZvC1wcw4AW-2l3P8qA_Rm7JM1d2ITCRSV_XI';
     },
 
     deleteTokens(): void {
-        localStorage.removeItem(accessTokenKey)
+        localStorage.removeItem(accessTokenKey);
     }
 }
 

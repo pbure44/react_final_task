@@ -16,7 +16,7 @@ const getAll = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const {data} = await movieService.getAll();
-            return data;                                         //or return thunkAPI.fulfillWithValue(data)
+            return data.results;                                         //or return thunkAPI.fulfillWithValue(data)
         } catch (e) {
             const error = e as AxiosError
             return

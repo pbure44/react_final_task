@@ -6,3 +6,7 @@ export interface IMovie{
     release_date:string;
     overview:string;
 }
+export interface IMovieResponce{
+    page:number;
+    results:IMovie[];
+}

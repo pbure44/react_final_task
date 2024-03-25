@@ -1,7 +1,6 @@
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {useEffect} from "react";
 import {movieActions} from "../../redux";
-import {MovieInfo} from "../MovieInfo/MovieInfo";
 import {MoviesListCard} from "../MoviesListCard/MoviesListCard";
 
 const MoviesList = () => {

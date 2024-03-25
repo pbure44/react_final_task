@@ -3,7 +3,7 @@ import {IMovieCard} from "../../interfaces/movieCardInterface";
 import {urls} from "../../constants/urls";
 import {useNavigate} from "react-router-dom";
 import css from './MoviesListCard.module.css';
-// import StarRatings from "react-star-ratings/build/star-ratings";
+import StarRatings from "react-star-ratings";
 
 
 interface IProps extends PropsWithChildren{
@@ -28,8 +28,8 @@ const MoviesListCard:FC<IProps> = ({movie}) => {
                     <p className={css.p}>release_date: {release_date}</p>
                     <figure className={css.figure}>
                         <div>Rating:</div>
-                        {/*<StarRatings rating={vote_average} starRatedColor="blue" numberOfStars={10} name='vote_average'*/}
-                        {/*             starDimension="15px" starSpacing="2px"/>*/}
+                        <StarRatings rating={vote_average} starRatedColor="blue" numberOfStars={10} name='vote_average'
+                                     starDimension="15px" starSpacing="2px"/>
                     </figure>
                 </div>
             </div>

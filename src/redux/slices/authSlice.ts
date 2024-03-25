@@ -6,11 +6,13 @@ import {AxiosError} from "axios";
 interface IState {
     registerError: string
     loginError: string
+    registerSuccess:string
 }
 
 const initialState: IState = {
     registerError: null,
-    loginError: null
+    loginError: null,
+    registerSuccess: null
 }
 
 const register = createAsyncThunk<void, { user: IAuth }>(
@@ -48,6 +50,9 @@ const authSlice = createSlice({
             })
             .addCase(login.rejected, state => {
                 state.loginError = 'Wrong username or password'
+            })
+            .addCase(register.fulfilled,state => {
+                state.registerSuccess = "New user was registered. Now you will be transferred to Main page"
             })
             .addMatcher(isFulfilled(register, login), state => {
                 state.registerError = null
