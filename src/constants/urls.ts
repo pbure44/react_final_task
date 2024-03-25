@@ -1,6 +1,6 @@
 const baseURL = 'https://api.themoviedb.org/3'
 
-const auth = '/authentication/token/validate_with_login'
+const auth = '/authentication'
 const users = '/users'
 const movie = '/discover/movie'
 const genres = '/genre/movie/list'
@@ -21,6 +21,9 @@ const urls = {
     },
     search: {
         base: search
+    },
+    poster: {
+        base: 'https://media.themoviedb.org/t/p/w220_and_h330_face'
     }
 }
 

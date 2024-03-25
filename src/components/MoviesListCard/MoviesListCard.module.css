@@ -1,0 +1,32 @@
+.MoviesListCard{
+
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    margin: 10px;
+    padding: 10px;
+    justify-content: center;
+}
+
+.poster{
+    display: flex;
+    justify-content: center;
+
+}
+.background{
+    background-color: aliceblue;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+.p{
+    margin: 8px 0 0 0;
+}
+.figure{
+    margin: 8px 0 0 0;
+    padding: 0;
+}
