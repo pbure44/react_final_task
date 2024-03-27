@@ -2,7 +2,6 @@ import {IAuth, ITokens, IUser} from "../interfaces";
 import {IRes} from "../types";
 import {apiService} from "./apiService";
 import {urls} from "../constants/urls";
-import {regData} from "../constants/regData";
 
 const accessTokenKey = 'access';
 
@@ -16,9 +15,6 @@ const authService = {
     },
 
     async login(user:IAuth):Promise<void>{
-        // const {data} = await apiService.post(urls.auth.login,regData);
-        // console.log("Login AuthService")
-        // console.log(regData);
         const {data} = await apiService.post(urls.auth.login,user);
         this.setTokens(data)
     },

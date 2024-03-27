@@ -9,4 +9,5 @@ export interface IMovie{
 export interface IMovieResponce{
     page:number;
     results:IMovie[];
+    total_results: number;
 }

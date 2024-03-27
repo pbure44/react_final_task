@@ -13,7 +13,7 @@
 .poster{
     display: flex;
     justify-content: center;
-
+    cursor: pointer;
 }
 .background{
     background-color: aliceblue;

@@ -17,7 +17,7 @@ const urls = {
         base: movie
     },
     genres: {
-        list: genres
+        base: genres
     },
     search: {
         base: search

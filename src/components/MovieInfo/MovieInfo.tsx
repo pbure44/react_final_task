@@ -1,33 +1,56 @@
-import {FC, PropsWithChildren} from "react";
-import {IMovie} from "../../interfaces";
-import {urls} from "../../constants/urls";
-import css from './MovieInfo.module.css'
 import {useLocation} from "react-router-dom";
 import StarRatings from "react-star-ratings";
+import {useEffect} from "react";
+
+import {urls} from "../../constants/urls";
+import css from './MovieInfo.module.css'
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import {genreActions} from "../../redux";
 
 
-
-
-
-interface IProps extends PropsWithChildren{
-    movie:IMovie
-}
-
-
-const MovieInfo:FC<IProps> = ({movie}) => {
+const MovieInfo = () => {
     const location = useLocation();
-    const {title, original_title, original_language, poster_path, release_date, vote_average, vote_count, popularity, overview}=location.state
+    const {
+        title,
+        original_title,
+        original_language,
+        poster_path,
+        release_date,
+        vote_average,
+        vote_count,
+        popularity,
+        overview,
+        genre_ids
+    } = location.state
     const poster = urls.poster.base + poster_path;
+
+    const {genres} = useAppSelector(state => state.genres);
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(genreActions.getAll())
+    }, []);
+
+
+    for (const element of genre_ids) {
+        const res=genres.find((genre) => genre.id === element)?.name
+    }
+
+
     return (
         <div className={css.MovieInfo}>
             <h1>Movie Title: "{title}"</h1>
-            <h3>Ogirinal title: "{original_title}"</h3>
+            <h3>Original title: "{original_title}"</h3>
             <img className={css.img} src={poster} alt={title}/>
-            <div>Rating: <StarRatings rating={vote_average} starRatedColor="yellow" starEmptyColor="grey" numberOfStars={10} name='vote_average' starDimension="20px" starSpacing="4px"/></div>
-            <p>release_date: {release_date}</p>
-            <p>vote_count:{vote_count}</p>
-            <p>popularity:{popularity}</p>
-            <p>overview:{overview}</p>
+            <div>Rating: <StarRatings rating={vote_average} starRatedColor="yellow" starEmptyColor="grey"
+                                      numberOfStars={10} name='vote_average' starDimension="20px" starSpacing="4px"/>
+            </div>
+            {/*<p>Genres: {movieGenres}</p>*/}
+            <p>Release date: {release_date}</p>
+            <p>Original language: "{original_language}"</p>
+            <p>Vote count: {vote_count}</p>
+            <p>Popularity: {popularity}</p>
+            <h5>Overview:<p>{overview}</p></h5>
         </div>
     );
 };

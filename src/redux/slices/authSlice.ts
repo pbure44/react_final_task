@@ -1,7 +1,8 @@
 import {createAsyncThunk, createSlice, isFulfilled, isRejected} from "@reduxjs/toolkit";
+import {AxiosError} from "axios";
+
 import {IAuth} from "../../interfaces";
 import {authService} from "../../services";
-import {AxiosError} from "axios";
 
 interface IState {
     registerError: string
@@ -52,7 +53,7 @@ const authSlice = createSlice({
                 state.loginError = 'Wrong username or password'
             })
             .addCase(register.fulfilled,state => {
-                state.registerSuccess = "New user was registered. Now you will be transferred to Main page"
+                state.registerSuccess = "New user was successfully registered. Now you will be transferred to Main page"
             })
             .addMatcher(isFulfilled(register, login), state => {
                 state.registerError = null
