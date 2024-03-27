@@ -1,6 +1,7 @@
 import {usePagination} from "../../hooks/usePagination";
 import {MoviesList} from "../MoviesList/MoviesList";
 
+import css from './MoviesPagination.module.css'
 
 const MoviesPagination = () => {
 
@@ -16,15 +17,13 @@ const MoviesPagination = () => {
         count: 1120,
     });
 
-    console.log("MoviesPagination", page)
-
     return (
         <div>
-            <div className="items">
+            <div >
                 <MoviesList page={page}/>
             </div>
-            <div className="pagination">
-                <p className="text">
+            <div className={css.pagination}>
+                <p className={css.text}>
                     {page}/{totalPages}
                 </p>
                 <button onClick={prevPage}
