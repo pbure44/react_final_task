@@ -6,6 +6,7 @@ import {urls} from "../../constants/urls";
 import css from './MovieInfo.module.css'
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {genreActions} from "../../redux";
+import {Genre} from "../MoviesGenres/Genre";
 
 
 const MovieInfo = () => {
@@ -32,11 +33,6 @@ const MovieInfo = () => {
     }, []);
 
 
-    for (const element of genre_ids) {
-        const res=genres.find((genre) => genre.id === element)?.name
-    }
-
-
     return (
         <div className={css.MovieInfo}>
             <h1>Movie Title: "{title}"</h1>
@@ -45,7 +41,8 @@ const MovieInfo = () => {
             <div>Rating: <StarRatings rating={vote_average} starRatedColor="yellow" starEmptyColor="grey"
                                       numberOfStars={10} name='vote_average' starDimension="20px" starSpacing="4px"/>
             </div>
-            {/*<p>Genres: {movieGenres}</p>*/}
+            <p>Genres: {genres.filter((genre) => genre_ids.includes(genre.id)).map(genre => <Genre key={genre.id}
+                                                                                                   genre={genre}/>)}</p>
             <p>Release date: {release_date}</p>
             <p>Original language: "{original_language}"</p>
             <p>Vote count: {vote_count}</p>

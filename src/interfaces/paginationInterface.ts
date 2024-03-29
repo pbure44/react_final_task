@@ -1,7 +1,4 @@
-export interface UsePaginationProps {
-    contentPerPage: number,
-    count: number,
-}
+
 export interface UsePaginationReturn {
     page: number;
     totalPages: number;
@@ -9,4 +6,6 @@ export interface UsePaginationReturn {
     prevPage: () => void;
     setPage: (page: number) => void;
     gaps: { before: boolean; paginationGroup: number[]; after: boolean };
+    count:number;
+    setCount:(count:number)=>void;
 }

@@ -5,29 +5,16 @@ import {useAppDispatch, useAppSelector} from "../../hooks";
 import {movieActions} from "../../redux";
 import css from './MoviesList.module.css'
 import {MoviesListCard} from "../MoviesListCard/MoviesListCard";
+import {IMovie} from "../../interfaces";
 
 
 interface IProps extends PropsWithChildren {
     page: number
+    movies: IMovie[]
 }
 
-const MoviesList: FC<IProps> = ({page}) => {
-    const {movies} = useAppSelector(state => state.movies);
+const MoviesList: FC<IProps> = ({page,movies}) => {
 
-    const location = useLocation();
-
-    const dispatch = useAppDispatch();
-
-
-    useEffect(() => {
-        if (location.state) {
-            const genreid = location.state
-            dispatch(movieActions.getMoviesByGenre({genreid, page}))
-
-        } else {
-            dispatch(movieActions.getMoviesByPageNumber(page))
-        }
-    }, [location.state, page]);
 
     return (
         <div className={css.body}>

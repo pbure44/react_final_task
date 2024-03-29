@@ -2,36 +2,36 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 
 import {movieService} from "../../services";
-import {IMovie} from "../../interfaces";
+import {IMovie, IMovieResponce} from "../../interfaces";
 
 interface IState {
-    movies: IMovie[]
+    moviesResponces: IMovieResponce
 }
 
 const initialState: IState = {
-    movies: []
+    moviesResponces: null
 }
 
-const getAll = createAsyncThunk(
-    'movieSlice/getAll',
-    async (_, {rejectWithValue}) => {
-        try {
-            const {data} = await movieService.getAll();
-            const totalMovies = data.total_results;
-            return data.results;                                         //or return thunkAPI.fulfillWithValue(data)
-        } catch (e) {
-            const error = e as AxiosError
-            return rejectWithValue(error.response.data)
-        }
-    }
-)
+// const getAll = createAsyncThunk(
+//     'movieSlice/getAll',
+//     async (_, {rejectWithValue}) => {
+//         try {
+//             const {data} = await movieService.getAll();
+//             const totalMovies = data.total_results;
+//             return data.results;                                         //or return thunkAPI.fulfillWithValue(data)
+//         } catch (e) {
+//             const error = e as AxiosError
+//             return rejectWithValue(error.response.data)
+//         }
+//     }
+// )
 
-const getMoviesByPageNumber = createAsyncThunk<IMovie[],number>(
+const getMoviesByPageNumber = createAsyncThunk<IMovieResponce,number>(
     'movieSlice/getMoviesByPageNumber',
     async (page, {rejectWithValue}) => {
         try {
             const {data} = await movieService.getMoviesByPageNumber(page);
-            return  data.results;
+            return  data;
         } catch (e) {
             const error = e as AxiosError
             return rejectWithValue(error.response.data)
@@ -40,12 +40,12 @@ const getMoviesByPageNumber = createAsyncThunk<IMovie[],number>(
 )
 
 
-const getMoviesByGenre = createAsyncThunk<IMovie[], {genreid:number,page:number}>(
+const getMoviesByGenre = createAsyncThunk<IMovieResponce, {genreid:number,page:number}>(
     'movieSlice/getMoviesByGenre',
     async ({genreid, page}, {rejectWithValue}) => {
         try {
             const {data} = await movieService.getMoviesByGenre(genreid,page);
-            return data.results;                                         //or return thunkAPI.fulfillWithValue(data)
+            return data;                                         //or return thunkAPI.fulfillWithValue(data)
         } catch (e) {
             const error = e as AxiosError
             return rejectWithValue(error.response.data)
@@ -59,14 +59,14 @@ const movieSlice = createSlice({
     reducers: {},
     extraReducers: builder => {
         builder
-            .addCase(getAll.fulfilled, (state, action) => {
-                state.movies = action.payload
-            })
+            // .addCase(getAll.fulfilled, (state, action) => {
+            //     state.moviesResponces = action.payload
+            // })
             .addCase(getMoviesByGenre.fulfilled,(state,action)=>{
-                state.movies =action.payload
+                state.moviesResponces =action.payload
             })
             .addCase(getMoviesByPageNumber.fulfilled,(state,action)=>{
-                state.movies = action.payload
+                state.moviesResponces = action.payload
             })
     }
 })
@@ -75,7 +75,7 @@ const {reducer:movieReducer,actions} = movieSlice;
 
 const movieActions={
     ...actions,
-    getAll,
+    // getAll,
     getMoviesByGenre,
     getMoviesByPageNumber
 }
